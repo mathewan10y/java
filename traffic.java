@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.net.CookieHandler;
 
 class Traffic {
     public static void main(String[] args) {
@@ -28,11 +27,6 @@ class TrafficLight extends JPanel implements ActionListener {
         r1 = new JRadioButton("Red");
         r2 = new JRadioButton("Yellow");
         r3 = new JRadioButton("Green");
-        r1.setSelected(true);
-
-        red_c = Color.red;
-        yellow_c = getBackground();
-        green_c = getBackground();
 
         ButtonGroup gp = new ButtonGroup();
         gp.add(r1);
