@@ -3,54 +3,52 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
 
-class thri implements Runnable {
-    int n;
-
-    thri(int n) {
-        this.n = n;
-        Thread t = new Thread(this, "thread");
-        t.start();
-    }
-
-    public void run() {
-        for (int i = 0; i < n; i++) {
-            System.err.println("thrikkakara");
-        }
-    }
-
-}
-
 public class swthr {
 
-    public class gui extends JFrame implements ActionListener {
+    class gui extends JFrame implements ActionListener {
+        JTextField tex1;
+        JButton b1;
 
         gui() {
             setTitle("prg");
+            setSize(400, 600);
             setLayout(new BorderLayout());
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            JTextField t1 = new JTextField("");
-            t1.addActionListener(this);
-
-            JButton b1 = new JButton("print");
+            tex1 = new JTextField("");
+            tex1.setPreferredSize(new Dimension(400, 100));
+            tex1.addActionListener(this);
+            b1 = new JButton("print");
             b1.addActionListener(this);
 
-            add(b1);
-            add(t1);
+            add(b1, BorderLayout.CENTER);
+            add(tex1, BorderLayout.NORTH);
             setVisible(true);
 
         }
 
+        @Override
         public void actionPerformed(ActionEvent e) {
-            String s = t1.getText(t1);
+            try {
+
+                int t = Integer.parseInt(tex1.getText());
+                new kochi(t);
+                new thri(t);
+            } catch (NumberFormatException ek) {
+                System.out.println("exception caught");
+            }
 
         }
 
     }
 
     public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new swthr().new gui();
 
-        new thri(3);
-        new kochi(4);
+            }
+        });
+
     }
 }
 
@@ -68,4 +66,21 @@ class kochi implements Runnable {
             System.err.println("kochi");
         }
     }
+}
+
+class thri implements Runnable {
+    int n;
+
+    thri(int n) {
+        this.n = n;
+        Thread t = new Thread(this, "thread");
+        t.start();
+    }
+
+    public void run() {
+        for (int i = 0; i < n; i++) {
+            System.err.println("thrikkakara");
+        }
+    }
+
 }
