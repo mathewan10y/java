@@ -29,6 +29,7 @@ public class sliding extends JFrame implements ActionListener {
             buttonpanel.add(buttons[i]);
         }
         add(buttonpanel, BorderLayout.CENTER);
+        
         shuffle();
         updatebuttons();
         setVisible(true);
@@ -98,7 +99,7 @@ public class sliding extends JFrame implements ActionListener {
             }
 
         }
-        display.setText("nee jayichu mayire");
+        display.setText("you win");
     }
 
     public static void main(String[] args) {
