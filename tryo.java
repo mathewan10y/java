@@ -4,15 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.ArrayList;
 
-public class lab extends JFrame implements ActionListener {
+public class tryo extends JFrame implements ActionListener {
     JButton b1;
     JTextField t1;
     String s;
     char[] ch2 = new char[100];
     char[] ch = new char[100];
+    ArrayList<Character> c = new ArrayList<>();
 
-    lab() {
+    tryo() {
         setTitle("lab");
         setSize(480, 600);
         setLayout(new GridLayout(2, 1));
@@ -34,13 +36,15 @@ public class lab extends JFrame implements ActionListener {
         char[] ch = new char[100];
         s = t1.getText();
         int l = s.length();
-        s.getChars(0, l, ch, 0);
         int k = 0;
+        s.getChars(0, l, ch, 0);
         for (int i = 0; ch[i] != '\0'; i++) {
-            if (notpre(ch[i])) {
+            if (!c.contains((ch[i]))) {
+                c.add(ch[i]);
                 ch2[k] = ch[i];
                 k++;
             }
+
         }
 
         // String str= new String(ch2);
@@ -78,7 +82,7 @@ public class lab extends JFrame implements ActionListener {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new lab();
+                new tryo();
             }
         });
     }
